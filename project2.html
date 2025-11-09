@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кондиции... - GoreSeries Продакшн</title>
+    <link rel="icon" type="image/png" href="img/konditsioner.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для скроллбара */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            border-radius: 6px;
+            border: 2px solid var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-blue) 100%);
+        }
+        
+        :root {
+            --energy-red: #ff0000;
+            --energy-blue: #0047ab;
+            --energy-dark: #8b0000;
+            --energy-light: #ff6b6b;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --accent-red: #ff4757;
+            --accent-blue: #3742fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Energy Drink Background Pattern */
+        .energy-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/VpPdRvbZ/konditsioner.png');
+            background-size: 200px;
+            background-repeat: repeat;
+            opacity: 0.15;
+            z-index: -2;
+            animation: floatPattern 20s infinite linear;
+        }
+        
+        @keyframes floatPattern {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 200px 200px;
+            }
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1.2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            color: var(--energy-red);
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--energy-red);
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        nav a.active {
+            color: var(--energy-red);
+            background: rgba(255, 0, 0, 0.15);
+        }
+        
+        /* Project Hero Section */
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+        
+        .project-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 71, 171, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            z-index: -1;
+        }
+        
+        .project-hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .project-poster {
+            flex: 0 0 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .project-poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(0, 71, 171, 0.3) 100%);
+            z-index: 1;
+        }
+        
+        .project-poster img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 0;
+        }
+        
+        .project-info {
+            flex: 1;
+            padding-bottom: 2rem;
+        }
+        
+        .project-info h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--energy-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--energy-red);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.5);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--energy-red);
+            border: 2px solid var(--energy-red);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        /* Episodes Section */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            display: inline-block;
+            padding-bottom: 1rem;
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--energy-red), var(--energy-blue));
+            border-radius: 2px;
+        }
+        
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .episode-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .episode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(0, 71, 171, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .episode-card:hover::before {
+            opacity: 1;
+        }
+        
+        .episode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.4);
+            border-color: rgba(255, 0, 0, 0.4);
+        }
+        
+        .episode-img {
+            height: 180px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .episode-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.9) 0%, rgba(0, 71, 171, 0.8) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+        
+        .episode-card:hover .episode-overlay {
+            opacity: 1;
+        }
+        
+        .episode-info {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .episode-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .episode-info p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
+        .episode-meta {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+        }
+        
+        .status-badge {
+            background: var(--energy-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.available {
+            background: var(--energy-blue);
+            color: white;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: var(--dark-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 0, 0, 0.5);
+            border: 2px solid var(--energy-red);
+        }
+
+        .video-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--energy-red) 0%, var(--energy-blue) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .video-content {
+            width: 100%;
+            position: relative;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 400px;
+            background: #000;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            gap: 1rem;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--energy-red);
+        }
+
+        .video-placeholder p {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--energy-dark) 0%, var(--energy-red) 100%);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-logo i {
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--energy-red);
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .project-hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .project-poster {
+                flex: 0 0 auto;
+                width: 250px;
+            }
+            
+            .project-info h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-meta {
+                justify-content: center;
+            }
+            
+            .btn-group {
+                justify-content: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                width: 95%;
+            }
+
+            .video-player,
+            .video-placeholder {
+                height: 300px;
+            }
+        }
+
+        /* Скрываем элементы управления скачиванием */
+        .video-player::-webkit-media-controls-download-button {
+            display: none !important;
+        }
+        
+        .video-player::-webkit-media-controls {
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Energy Drink Pattern Background -->
+    <div class="energy-pattern"></div>
+    
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <div class="video-header">
+                <div class="video-title" id="modalTitle">Просмотр серии</div>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-content" id="videoContent">
+                <video class="video-player" id="videoPlayer" controls controlsList="nodownload">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bolt logo-icon"></i>
+                    <h1>GoreSeries</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#projects">Проекты</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="project-hero-bg"></div>
+        <div class="container">
+            <div class="project-hero-content">
+                <div class="project-poster">
+                    <img src="https://i.ibb.co/nNw9XFby/Picsart-25-11-09-18-26-52-361.jpg" alt="Кондиции...">
+                </div>
+                <div class="project-info">
+                    <h1>Кондиции...</h1>
+                    <div class="project-meta">
+                        <span><i class="fas fa-user"></i> By Rinswent</span>
+                        <span><i class="fas fa-calendar"></i> 2025</span>
+                        <span><i class="fas fa-play-circle"></i> 4 серии</span>
+                    </div>
+                    <p class="project-description">
+                        «...Самый лучший сериал 2025! Хит столетия! Кондиции! Вас в буквальном смысле затащит в глубину сюжета, в котором полно смысла и поворотов. Кто то будет искать этот смысл, а кто-то будет просто угарать с видеоряда. Это вам решать - каким видеть данное кино...»
+                    </p>
+                    <div class="btn-group">
+                        <a href="#episodes" class="btn">
+                            <i class="fas fa-play"></i>
+                            Смотреть серии
+                        </a>
+                        <a href="index.html" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i>
+                            Назад к проектам
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section class="section" id="episodes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Все серии</h2>
+            </div>
+            <div class="episodes-grid">
+                <!-- Серия 1 -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('https://i.ibb.co/nNw9XFby/Picsart-25-11-09-18-26-52-361.jpg')"></div>
+                    <div class="episode-overlay">
+                        <button class="btn watch-btn" data-episode="1" data-video="https://www.dropbox.com/scl/fi/1p1qkwxm07bw5q7gdcb6c/SPOILER_1-1.mp4?rlkey=vspqdkdxv8kbcibcb9q7unalo&st=e4jt23xr&dl=1">
+                            <i class="fas fa-play"></i>
+                            Смотреть
+                        </button>
+                    </div>
+                    <div class="episode-info">
+                        <h3>1 серия: Что случилось?</h3>
+                        <p>Начало истории Кондиций.</p>
+                        <div class="episode-meta">
+                            <span>01:43</span>
+                            <span class="status-badge available">Доступно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 2 -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('https://i.ibb.co/nNw9XFby/Picsart-25-11-09-18-26-52-361.jpg')"></div>
+                    <div class="episode-overlay">
+                        <button class="btn watch-btn" data-episode="2" data-video="https://www.dropbox.com/scl/fi/yndu9cjl3fan4muaxps6q/SPOILER_1-2.mp4?rlkey=zpa2iump08y3q6bygeo3r1g1h&st=1qalmxox&dl=1">
+                            <i class="fas fa-play"></i>
+                            Смотреть
+                        </button>
+                    </div>
+                    <div class="episode-info">
+                        <h3>2 серия: Последствия</h3>
+                        <p>Развитие событий после происшествия.</p>
+                        <div class="episode-meta">
+                            <span>01:52</span>
+                            <span class="status-badge available">Доступно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 3 -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('https://i.ibb.co/nNw9XFby/Picsart-25-11-09-18-26-52-361.jpg')"></div>
+                    <div class="episode-overlay">
+                        <button class="btn watch-btn" data-episode="3" data-video="https://www.dropbox.com/scl/fi/x6zehtgsjxdv121f64lnj/SPOILER_1-3.mp4?rlkey=zee9m6v47dr96wzmv7ddh613v&st=zydajq2d&dl=1">
+                            <i class="fas fa-play"></i>
+                            Смотреть
+                        </button>
+                    </div>
+                    <div class="episode-info">
+                        <h3>3 серия: Пошло-поехало.</h3>
+                        <p>События набирают обороты.</p>
+                        <div class="episode-meta">
+                            <span>01:44</span>
+                            <span class="status-badge available">Доступно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 4 -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('https://i.ibb.co/nNw9XFby/Picsart-25-11-09-18-26-52-361.jpg')"></div>
+                    <div class="episode-overlay">
+                        <button class="btn watch-btn" data-episode="4" data-video="https://www.dropbox.com/scl/fi/0v09r0nosry4vp56d3crx/1-4.mp4?rlkey=fdtvjq7cxsj64mwv6w6hpv9z1&st=nqzwz94q&dl=1">
+                            <i class="fas fa-play"></i>
+                            Смотреть
+                        </button>
+                    </div>
+                    <div class="episode-info">
+                        <h3>4 серия: Стабильно?</h3>
+                        <p>Финал сезона Кондиций.</p>
+                        <div class="episode-meta">
+                            <span>02:44</span>
+                            <span class="status-badge available">Доступно</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-bolt"></i>
+                    <h2>GoreSeries Продакшн</h2>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 GoreSeries Продакшн.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Создание частиц для фона
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                const colors = ['var(--energy-red)', 'var(--energy-blue)', 'var(--accent-red)', 'var(--accent-blue)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Плавная прокрутка без затемнения
+            document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Обработчики для кнопок просмотра серий
+            const videoModal = document.getElementById('videoModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const watchButtons = document.querySelectorAll('.watch-btn');
+
+            // Открытие модального окна
+            watchButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const episodeNumber = this.getAttribute('data-episode');
+                    const episodeTitle = this.closest('.episode-card').querySelector('h3').textContent;
+                    const videoUrl = this.getAttribute('data-video');
+                    
+                    modalTitle.textContent = episodeTitle;
+                    
+                    // Загружаем и показываем видео
+                    if (videoUrl) {
+                        // Проверяем, поддерживает ли браузер формат видео
+                        videoPlayer.src = videoUrl;
+                        videoPlayer.load();
+                        videoPlayer.style.display = 'block';
+                        
+                        // Показываем сообщение, если видео не загружается
+                        videoPlayer.addEventListener('error', function() {
+                            console.error('Ошибка загрузки видео:', videoUrl);
+                            alert('Не удалось загрузить видео. Пожалуйста, проверьте ссылку или попробуйте позже.');
+                        });
+                    }
+                    
+                    videoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Закрытие модального окна
+            closeModal.addEventListener('click', function() {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                // Останавливаем видео при закрытии
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            });
+
+            // Закрытие модального окна при клике вне его
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    // Останавливаем видео при закрытии
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            });
+
+            // Закрытие модального окна клавишей ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    // Останавливаем видео при закрытии
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
