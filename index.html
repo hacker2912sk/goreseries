@@ -515,69 +515,86 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши проекты</h2>
+<!-- Projects Section -->
+<section class="section" id="projects">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наши проекты</h2>
+        </div>
+        <div class="projects-grid">
+            <!-- Проект 1 -->
+            <div class="project-card" onclick="window.location.href='project1.html'">
+                <div class="project-img" style="background-image: url('img/ataka_chit.jpg')">
+                    <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project1.html'">
+                        <i class="fas fa-play"></i>
+                        Смотреть сериал
+                    </button>
+                </div>
+                <div class="project-info">
+                    <h3>Атака читеров</h3>
+                    <p>Был человек Vladislav G, но после случая с Феликсом, он решил перейти на тёмную сторону...</p>
+                    <div class="project-meta">
+                        <span>By HACKER2912</span>
+                        <span>2025</span>
+                    </div>
+                </div>
             </div>
-            <div class="projects-grid">
-                <!-- Проект 1 -->
-                <div class="project-card" onclick="window.location.href='project1.html'">
-                    <div class="project-img" style="background-image: url('img/ataka_chit.jpg')">
-                        <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project1.html'">
-                            <i class="fas fa-play"></i>
-                            Смотреть сериал
-                        </button>
-                    </div>
-                    <div class="project-info">
-                        <h3>Атака читеров</h3>
-                        <p>Был человек Vladislav G, но после случая с Феликсом, он решил перейти на тёмную сторону...</p>
-                        <div class="project-meta">
-                            <span>By HACKER2912</span>
-                            <span>2025</span>
-                        </div>
+            
+            <!-- Проект 2 -->
+            <div class="project-card" onclick="window.location.href='project2.html'">
+                <div class="project-img" style="background-image: url('img/kondicii.jpg')">
+                    <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project2.html'">
+                        <i class="fas fa-play"></i>
+                        Смотреть сериал
+                    </button>
+                </div>
+                <div class="project-info">
+                    <h3>Кондиции...</h3>
+                    <p>«...Самый лучший сериал 2025! Хит столетия! Кондиции! Вас в буквальном смысле затащит в глубину сюжета, в котором полно смысла и поворотов. Кто то будет искать этот смысл, а кто-то будет просто угарать с видеоряда. Это вам решать - каким видеть данное кино...»</p>
+                    <div class="project-meta">
+                        <span>By Rinswent</span>
+                        <span>2025</span>
                     </div>
                 </div>
-                
-                <!-- Проект 2 -->
-                <div class="project-card" onclick="window.location.href='project2.html'">
-                    <div class="project-img" style="background-image: url('img/kondicii.jpg')">
-                        <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project2.html'">
-                            <i class="fas fa-play"></i>
-                            Смотреть сериал
-                        </button>
-                    </div>
-                    <div class="project-info">
-                        <h3>Кондиции...</h3>
-                        <p>«...Самый лучший сериал 2025! Хит столетия! Кондиции! Вас в буквальном смысле затащит в глубину сюжета, в котором полно смысла и поворотов. Кто то будет искать этот смысл, а кто-то будет просто угарать с видеоряда. Это вам решать - каким видеть данное кино...»</p>
-                        <div class="project-meta">
-                            <span>By Rinswent</span>
-                            <span>2025</span>
-                        </div>
+            </div>
+            
+            <!-- Проект 3 -->
+            <div class="project-card" onclick="window.location.href='project3.html'">
+                <div class="project-img" style="background-image: url('img/litvin.jpg')">
+                    <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project3.html'">
+                        <i class="fas fa-play"></i>
+                        Смотреть сериал
+                    </button>
+                </div>
+                <div class="project-info">
+                    <h3>Литвин играет в GoreBox</h3>
+                    <p>Литвин попадает в страшную засаду от Меллстроя, и ему предстоит из нее выбраться.</p>
+                    <div class="project-meta">
+                        <span>By nngb</span>
+                        <span>2025</span>
                     </div>
                 </div>
-                
-                <!-- Проект 3 -->
-                <div class="project-card" onclick="window.location.href='project3.html'">
-                    <div class="project-img" style="background-image: url('img/litvin.jpg')">
-                        <button class="banner-btn" onclick="event.stopPropagation(); window.location.href='project3.html'">
-                            <i class="fas fa-play"></i>
-                            Смотреть сериал
-                        </button>
+            </div>
+
+            <!-- Проект 4 - GoreРозы (В разработке) -->
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('img/gore_rozy.jpg'); position: relative;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); padding: 0.5rem 1rem; border-radius: 20px; color: var(--primary-yellow); font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-tools"></i> В разработке
                     </div>
-                    <div class="project-info">
-                        <h3>Литвин играет в GoreBox</h3>
-                        <p>Литвин попадает в страшную засаду от Меллстроя, и ему предстоит из нее выбраться.</p>
-                        <div class="project-meta">
-                            <span>By nngb</span>
-                            <span>2025</span>
-                        </div>
+                </div>
+                <div class="project-info">
+                    <h3>GoreРозы</h3>
+                    <p>Новый проект в разработке. Скоро здесь появится что-то особенное...</p>
+                    <div class="project-meta">
+                        <span>By GoreSeries Team</span>
+                        <span>Скоро</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
