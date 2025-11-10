@@ -245,56 +245,21 @@
             flex-wrap: wrap;
         }
         
-        /* Video Player Section */
-        .video-section {
-            padding: 4rem 0;
-            position: relative;
-        }
-        
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .video-player {
-            width: 100%;
-            height: 500px;
-            background: #000;
-            border: none;
-        }
-        
-        .video-info {
-            padding: 2rem;
-        }
-        
-        .video-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--accent-yellow) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
         /* Episodes Section */
         .section {
-            padding: 4rem 0;
+            padding: 6rem 0;
             position: relative;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
             z-index: 2;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             display: inline-block;
             padding-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--accent-yellow) 100%);
@@ -316,7 +281,7 @@
         
         .episodes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             position: relative;
             z-index: 2;
@@ -333,42 +298,59 @@
             cursor: pointer;
         }
         
+        .episode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .episode-card:hover::before {
+            opacity: 1;
+        }
+        
         .episode-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(200, 16, 46, 0.3);
         }
         
-        .episode-thumbnail {
+        .episode-img {
             height: 180px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             background-size: cover;
             background-position: center;
             position: relative;
         }
         
-        .episode-play {
+        .episode-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(200, 16, 46, 0.9) 0%, rgba(255, 215, 0, 0.8) 100%);
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--primary-yellow);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            align-items: center;
             opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
         }
         
-        .episode-card:hover .episode-play {
+        .episode-card:hover .episode-overlay {
             opacity: 1;
         }
         
         .episode-info {
             padding: 1.5rem;
+            position: relative;
+            z-index: 3;
         }
         
         .episode-info h3 {
@@ -379,11 +361,125 @@
             -webkit-text-fill-color: transparent;
         }
         
+        .episode-info p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
         .episode-meta {
             display: flex;
             justify-content: space-between;
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.8rem;
+        }
+        
+        .status-badge {
+            background: var(--primary-red);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.in-progress {
+            background: var(--primary-yellow);
+            color: var(--dark-bg);
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: var(--dark-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--primary-yellow);
+        }
+
+        .video-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--primary-red);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .video-content {
+            width: 100%;
+            position: relative;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 400px;
+            background: #000;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            gap: 1rem;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-yellow);
+        }
+
+        .video-placeholder p {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80%;
         }
         
         /* Footer */
@@ -490,22 +586,54 @@
             }
             
             .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .video-player {
-                height: 300px;
+                font-size: 2.2rem;
             }
             
             .episodes-grid {
                 grid-template-columns: 1fr;
             }
+
+            .video-container {
+                width: 95%;
+            }
+
+            .video-player,
+            .video-placeholder {
+                height: 300px;
+            }
+        }
+
+        /* Скрываем элементы управления скачиванием */
+        .video-player::-webkit-media-controls-download-button {
+            display: none !important;
+        }
+        
+        .video-player::-webkit-media-controls {
+            -webkit-justify-content: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
     <!-- Particle Background -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <div class="video-header">
+                <div class="video-title" id="modalTitle">Просмотр серии</div>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-content" id="videoContent">
+                <video class="video-player" id="videoPlayer" controls controlsList="nodownload">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+            </div>
+        </div>
+    </div>
     
     <!-- Header -->
     <header>
@@ -539,7 +667,7 @@
                     <div class="project-meta">
                         <span><i class="fas fa-user"></i> By nngb</span>
                         <span><i class="fas fa-calendar"></i> 2025</span>
-                        <span><i class="fas fa-play-circle"></i> 3 серии</span>
+                        <span><i class="fas fa-play-circle"></i> 6 серий</span>
                     </div>
                     <p class="project-description">
                         Литвин попадает в страшную засаду от Меллстроя, и ему предстоит из нее выбраться.
@@ -559,25 +687,6 @@
         </div>
     </section>
 
-    <!-- Video Player Section -->
-    <section class="video-section" id="videoPlayerSection">
-        <div class="container">
-            <div class="video-container">
-                <iframe 
-                    class="video-player" 
-                    id="mainVideoPlayer"
-                    src="https://www.youtube.com/embed/8Qc345ThM-g?rel=0&modestbranding=1&showinfo=0" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="video-info">
-                    <h2 class="video-title" id="videoTitle">Серия 1</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Episodes Section -->
     <section class="section" id="episodes">
         <div class="container">
@@ -586,49 +695,106 @@
             </div>
             <div class="episodes-grid">
                 <!-- Серия 1 -->
-                <div class="episode-card" onclick="playEpisode('8Qc345ThM-g', 'Серия 1')">
-                    <div class="episode-thumbnail" style="background-image: url('img/litvin.jpg')">
-                        <div class="episode-play">
+                <div class="episode-card" data-episode="1" data-video="https://www.dropbox.com/scl/fi/u25m75oxhdud3umcoyjnv/1.mp4?rlkey=oiy2rkgxl6jteqd2q5fmsjc2u&st=2vdixq09&dl=1">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="btn">
                             <i class="fas fa-play"></i>
+                            Смотреть
                         </div>
                     </div>
                     <div class="episode-info">
-                        <h3>Серия 1</h3>
+                        <h3>1 серия: Происшествие</h3>
+                        <p>Литвин сбегает из тюряги за убийство, но падает в горы.</p>
                         <div class="episode-meta">
-                            <span>YouTube</span>
-                            <span>Доступно</span>
+                            <span>--:--</span>
+                            <span class="status-badge">Доступно</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Серия 2 -->
-                <div class="episode-card" onclick="playEpisode('3d85Kni2v9M', 'Серия 2')">
-                    <div class="episode-thumbnail" style="background-image: url('img/litvin.jpg')">
-                        <div class="episode-play">
+                <div class="episode-card" data-episode="2" data-video="https://www.dropbox.com/scl/fi/w6hsa19s4agmt6uwvt3qs/2.mp4?rlkey=bh1na75u4axa1ajkd5mxcd9f3&st=idmysods&dl=1">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="btn">
                             <i class="fas fa-play"></i>
+                            Смотреть
                         </div>
                     </div>
                     <div class="episode-info">
-                        <h3>Серия 2</h3>
+                        <h3>2 серия: Меллстрой</h3>
+                        <p>Литвин узнаёт у Субо, где находится Меллстрой, но по пути покупки молока бабушке его вырубают.</p>
                         <div class="episode-meta">
-                            <span>YouTube</span>
-                            <span>Доступно</span>
+                            <span>--:--</span>
+                            <span class="status-badge">Доступно</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Серия 3 -->
-                <div class="episode-card" onclick="playEpisode('B9MSwbaZ5Yw', 'Серия 3')">
-                    <div class="episode-thumbnail" style="background-image: url('img/litvin.jpg')">
-                        <div class="episode-play">
+                <div class="episode-card" data-episode="3" data-video="https://www.dropbox.com/scl/fi/y2ai0zg8ao2i3cl03tedp/3.mp4?rlkey=c5qrd0dyj01jgnez7gdkqdtdw&st=1rnuogpq&dl=1">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="btn">
                             <i class="fas fa-play"></i>
+                            Смотреть
                         </div>
                     </div>
                     <div class="episode-info">
-                        <h3>Серия 3</h3>
+                        <h3>3 серия: Побег</h3>
+                        <p>Литвина спас А4, но после того как они получили деньги от Меллстроя и устроили днюху бабушке, они попали в плен.</p>
                         <div class="episode-meta">
-                            <span>YouTube</span>
-                            <span>Доступно</span>
+                            <span>--:--</span>
+                            <span class="status-badge">Доступно</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 4 (В разработке) -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="status-badge in-progress">В разработке</div>
+                    </div>
+                    <div class="episode-info">
+                        <h3>4 серия: Без названия</h3>
+                        <p>Описание отсутствует.</p>
+                        <div class="episode-meta">
+                            <span>--:--</span>
+                            <span class="status-badge in-progress">В разработке</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 5 (В разработке) -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="status-badge in-progress">В разработке</div>
+                    </div>
+                    <div class="episode-info">
+                        <h3>5 серия: Без названия</h3>
+                        <p>Описание отсутствует.</p>
+                        <div class="episode-meta">
+                            <span>--:--</span>
+                            <span class="status-badge in-progress">В разработке</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Серия 6 (В разработке) -->
+                <div class="episode-card">
+                    <div class="episode-img" style="background-image: url('img/litvin.jpg')"></div>
+                    <div class="episode-overlay">
+                        <div class="status-badge in-progress">В разработке</div>
+                    </div>
+                    <div class="episode-info">
+                        <h3>6 серия: Без названия</h3>
+                        <p>Описание отсутствует.</p>
+                        <div class="episode-meta">
+                            <span>--:--</span>
+                            <span class="status-badge in-progress">В разработке</span>
                         </div>
                     </div>
                 </div>
@@ -676,7 +842,7 @@
                 particlesContainer.appendChild(particle);
             }
             
-            // Плавная прокрутка
+            // Плавная прокрутка без затемнения
             document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     if (this.getAttribute('href').startsWith('#')) {
@@ -692,24 +858,71 @@
                     }
                 });
             });
-        });
 
-        // Функция для воспроизведения эпизода
-        function playEpisode(videoId, title) {
-            const videoPlayer = document.getElementById('mainVideoPlayer');
-            const videoTitle = document.getElementById('videoTitle');
-            
-            // Обновляем видео с правильными параметрами
-            videoPlayer.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&autoplay=1`;
-            
-            // Обновляем заголовок
-            videoTitle.textContent = title;
-            
-            // Прокручиваем к видеоплееру
-            document.getElementById('videoPlayerSection').scrollIntoView({
-                behavior: 'smooth'
+            // Обработчики для карточек серий
+            const videoModal = document.getElementById('videoModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const episodeCards = document.querySelectorAll('.episode-card[data-video]');
+
+            // Открытие модального окна при клике на карточку
+            episodeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const episodeTitle = this.querySelector('h3').textContent;
+                    const videoUrl = this.getAttribute('data-video');
+                    
+                    modalTitle.textContent = episodeTitle;
+                    
+                    // Загружаем и показываем видео
+                    if (videoUrl) {
+                        videoPlayer.src = videoUrl;
+                        videoPlayer.load();
+                        videoPlayer.style.display = 'block';
+                        
+                        // Показываем сообщение, если видео не загружается
+                        videoPlayer.addEventListener('error', function() {
+                            console.error('Ошибка загрузки видео:', videoUrl);
+                            alert('Не удалось загрузить видео. Пожалуйста, проверьте ссылку или попробуйте позже.');
+                        });
+                    }
+                    
+                    videoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
             });
-        }
+
+            // Закрытие модального окна
+            closeModal.addEventListener('click', function() {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                // Останавливаем видео при закрытии
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            });
+
+            // Закрытие модального окна при клике вне его
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    // Останавливаем видео при закрытии
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            });
+
+            // Закрытие модального окна клавишей ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    // Останавливаем видео при закрытии
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            });
+        });
     </script>
 </body>
 </html>
