@@ -34,6 +34,8 @@
             --darker-bg: #050505;
             --accent-red: #ff4757;
             --accent-yellow: #ffdd59;
+            --discord-purple: #5865F2;
+            --discord-purple-dark: #4752C4;
         }
         
         * {
@@ -107,6 +109,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
         
         nav a {
@@ -127,6 +130,68 @@
         nav a.active {
             color: var(--primary-yellow);
             background: rgba(255, 215, 0, 0.15);
+        }
+        
+        /* Discord Button in Header */
+        .discord-btn-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--discord-purple);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-btn-header:hover {
+            background: var(--discord-purple-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(88, 101, 242, 0.4);
+        }
+        
+        /* Floating Discord Button */
+        .discord-btn-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--discord-purple);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .discord-btn-floating:hover {
+            background: var(--discord-purple-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(88, 101, 242, 0.5);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
         }
         
         /* Project Hero Section */
@@ -636,6 +701,13 @@
             .episode-info h3 {
                 font-size: 1.1rem;
             }
+            
+            .discord-btn-floating {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -685,6 +757,18 @@
             .video-title {
                 font-size: 1rem;
             }
+            
+            .discord-btn-header {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .discord-btn-floating {
+                bottom: 15px;
+                right: 15px;
+                padding: 0.7rem 1rem;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -709,6 +793,15 @@
                 padding: 0.8rem 1.5rem;
                 font-size: 0.9rem;
             }
+            
+            .discord-btn-floating span {
+                display: none;
+            }
+            
+            .discord-btn-floating {
+                padding: 0.8rem;
+                border-radius: 50%;
+            }
         }
 
         /* Скрываем элементы управления скачиванием */
@@ -725,6 +818,12 @@
 <body>
     <!-- Particle Background -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Floating Discord Button -->
+    <a href="https://discord.gg/HNZqagrNCd" class="discord-btn-floating" target="_blank">
+        <i class="fab fa-discord"></i>
+        <span>Discord</span>
+    </a>
     
     <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
@@ -756,6 +855,12 @@
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="index.html#projects">Проекты</a></li>
                         <li><a href="about.html">О нас</a></li>
+                        <li>
+                            <a href="https://discord.gg/HNZqagrNCd" class="discord-btn-header" target="_blank">
+                                <i class="fab fa-discord"></i>
+                                Discord
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
